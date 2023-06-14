@@ -6,6 +6,8 @@ class ActionWaitUntilType(Enum):
     CONFIRM_BUTTON_OR_INSUFFICIENT_STAMINA_TEXT = 2
     CONFIRM_BUTTON = 3
     INSUFFICIENT_STAMINA_TEXT = 4
+    LEVEL_UP_TEXT = 5
+    BATTLE_TEXT_OR_LEVEL_UP_TEXT = 6
 
 class ActionType(Enum):
     MOVE = 0
