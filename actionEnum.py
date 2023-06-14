@@ -20,6 +20,7 @@ class ActionPos(Enum):
     CONFIRM_SKILL = 2
     CHOOSE_REFILL_ALL_STAMINA = 3
     CONFIRM_REFILL_STAMINA = 4
+    CHOOSE_SECOND_SKILL = 5
 
     @classmethod
     def has_key(self, value):

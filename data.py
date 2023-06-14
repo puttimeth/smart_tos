@@ -12,7 +12,8 @@ MOVE_POS_DICT = {
     ActionPos.CONFIRM_BATTLE: [880, 2280],
     ActionPos.CONFIRM_SKILL: [330, 1780],
     ActionPos.CHOOSE_REFILL_ALL_STAMINA: [570, 1460],
-    ActionPos.CONFIRM_REFILL_STAMINA: [345, 1920]
+    ActionPos.CONFIRM_REFILL_STAMINA: [345, 1920],
+    ActionPos.CHOOSE_SECOND_SKILL: [540, 1410]
 }
 
 IMAGE_RANGES = {
@@ -44,10 +45,21 @@ confirm_battle_action_list = [
 ]
 
 initial_skill_action_list = [
-    ActionClick('c3', after_delay=1500),
-    ActionClick('c4', after_delay=1500),
+    ActionClick('c6', after_delay=1500),
+    ActionClick(ActionPos.CHOOSE_SECOND_SKILL, after_delay=1000),
     ActionClick(ActionPos.CONFIRM_SKILL, after_delay=2000),
-    ActionClick('c5', after_delay=1000)
+]
+
+mid_stage_skill_action_list = [
+    ActionClick('c2', after_delay=10000),
+    ActionClick('c2', after_delay=10000),
+    ActionClick('c2', after_delay=10000),
+    ActionClick('c2', after_delay=10000),
+    ActionClick('c3', after_delay=2000),
+    ActionMove('5 1', '6 1', duration=500, after_delay=18000),
+    ActionClick('c2', after_delay=10000),
+    ActionClick('c4', after_delay=2000),
+    ActionMove('1 1', '2 1', duration=500, after_delay=3000),
 ]
 
 # action set
@@ -56,7 +68,8 @@ default_guild_event_action_set = ActionSet(
     'default guild event', 
     'ctrl+l', 
     confirm_battle_action_list + 
-    initial_skill_action_list + 
+    initial_skill_action_list +
+    mid_stage_skill_action_list +
     [ActionWaitUntil(ActionWaitUntilType.BATTLE_TEXT_OR_LEVEL_UP_TEXT)] +
     [ActionClick(ActionPos.CHALLENGE_AGAIN)] +
     [ActionClick(ActionPos.CHALLENGE_AGAIN)] +
