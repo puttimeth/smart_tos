@@ -17,10 +17,10 @@ MOVE_POS_DICT = {
 }
 
 IMAGE_RANGES = {
-    ActionWaitUntilType.BATTLE_TEXT: [480, 448, 600, 483],
-    ActionWaitUntilType.CHALLENGE_AGAIN_BUTTON: [745, 1131, 1001, 1239],
+    ActionWaitUntilType.BATTLE_TEXT: [480, 478, 600, 512],
+    ActionWaitUntilType.CHALLENGE_AGAIN_BUTTON: [745, 1160, 1001, 1269],
     ActionWaitUntilType.CONFIRM_BUTTON: [750, 2230, 1030, 2335],
-    ActionWaitUntilType.INSUFFICIENT_STAMINA_TEXT: [375, 563, 697, 591],
+    ActionWaitUntilType.INSUFFICIENT_STAMINA_TEXT: [375, 547, 697, 575],
     ActionWaitUntilType.LEVEL_UP_TEXT: [476, 1121, 681, 1154]
 }
 
