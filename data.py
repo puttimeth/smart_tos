@@ -6,6 +6,8 @@ from actionEnum import ActionPos, ActionWaitUntilType
 
 PROGRAM_LISTEN = None
 device = None
+event_thread = None
+event_thread_stop = False
 
 MOVE_POS_DICT = {
     ActionPos.CHALLENGE_AGAIN: [870, 1190],
@@ -20,8 +22,8 @@ IMAGE_RANGES = {
     ActionWaitUntilType.BATTLE_TEXT: [480, 478, 600, 512],
     ActionWaitUntilType.CHALLENGE_AGAIN_BUTTON: [745, 1160, 1001, 1269],
     ActionWaitUntilType.CONFIRM_BUTTON: [750, 2230, 1030, 2335],
-    ActionWaitUntilType.INSUFFICIENT_STAMINA_TEXT: [375, 547, 697, 575],
-    ActionWaitUntilType.LEVEL_UP_TEXT: [476, 1121, 681, 1154]
+    ActionWaitUntilType.INSUFFICIENT_STAMINA_TEXT: [375, 545, 697, 576],
+    ActionWaitUntilType.LEVEL_UP_TEXT: [476, 1078, 681, 1111]
 }
 
 IMAGE_PATHS = {
@@ -45,9 +47,9 @@ confirm_battle_action_list = [
 ]
 
 initial_skill_action_list = [
-    ActionClick('c6', after_delay=1500),
-    ActionClick(ActionPos.CHOOSE_SECOND_SKILL, after_delay=1000),
-    ActionClick(ActionPos.CONFIRM_SKILL, after_delay=2000),
+    ActionClick('c2', after_delay=1500),
+    # ActionClick(ActionPos.CHOOSE_SECOND_SKILL, after_delay=1000),
+    # ActionClick(ActionPos.CONFIRM_SKILL, after_delay=2000),
 ]
 
 mid_stage_skill_action_list = [
@@ -64,36 +66,41 @@ mid_stage_skill_action_list = [
 
 # action set
 
-default_guild_event_action_set = ActionSet(
-    'default guild event', 
+fill_event_action_set = ActionSet(
+    'Auto Fill', 
     'ctrl+l', 
     confirm_battle_action_list + 
     initial_skill_action_list +
-    mid_stage_skill_action_list +
+    # mid_stage_skill_action_list +
     [ActionWaitUntil(ActionWaitUntilType.BATTLE_TEXT_OR_LEVEL_UP_TEXT)] +
     [ActionClick(ActionPos.CHALLENGE_AGAIN)] +
     [ActionClick(ActionPos.CHALLENGE_AGAIN)] +
     [ActionWaitUntil(ActionWaitUntilType.CONFIRM_BUTTON_OR_INSUFFICIENT_STAMINA_TEXT)])
 
-default_guild_event_action_set_multiple = ActionSet(
-    'default guild event multiple', 
+default_guild_event_action_set_20 = ActionSet(
+    'guild event x 20', 
     'ctrl+alt+l', 
-    default_guild_event_action_set.action_list * 20)
+    fill_event_action_set.action_list * 20)
 
-no_refill_guild_event_action_set = ActionSet(
-    'default guild event', 
+default_guild_event_action_set_100 = ActionSet(
+    'guild event x 100', 
+    'ctrl+alt+shift+l', 
+    fill_event_action_set.action_list * 100)
+
+no_fill_event_action_set = ActionSet(
+    'No Fill', 
     'ctrl+m', 
     confirm_battle_action_list + 
     initial_skill_action_list + 
-    [ActionWaitUntil(ActionWaitUntilType.BATTLE_TEXT)] +
+    [ActionWaitUntil(ActionWaitUntilType.BATTLE_TEXT_OR_LEVEL_UP_TEXT)] +
     [ActionClick(ActionPos.CHALLENGE_AGAIN)] +
     [ActionClick(ActionPos.CHALLENGE_AGAIN)] +
     [ActionWaitUntil(ActionWaitUntilType.CONFIRM_BUTTON)])
 
-no_refill_guild_event_action_set_multiple = ActionSet(
-    'default guild event', 
+no_refill_guild_event_action_set_20 = ActionSet(
+    'guild event x 20 no refill', 
     'ctrl+alt+m', 
-    no_refill_guild_event_action_set.action_list * 20)
+    no_fill_event_action_set.action_list * 20)
 
 
-action_set_list = [default_guild_event_action_set, default_guild_event_action_set_multiple, no_refill_guild_event_action_set_multiple]
+action_set_list = [fill_event_action_set, default_guild_event_action_set_20, default_guild_event_action_set_100, no_refill_guild_event_action_set_20]

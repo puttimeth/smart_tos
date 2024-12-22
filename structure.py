@@ -98,8 +98,8 @@ class ActionSet:
         self.action_list = action_list
 
     def resolve(self):
-        print(colorize(f'Start {self.name}', Color.GREEN))
         for idx, action in enumerate(self.action_list):
+            if data.event_thread_stop:
+                break
             print(colorize(f'In progress {idx+1}/{len(self.action_list)}: {action.log()}', Color.YELLOW))
             action.resolve()
-        print(colorize(f'Finish {self.name}\n', Color.GREEN))
