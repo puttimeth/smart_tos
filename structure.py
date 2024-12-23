@@ -73,6 +73,8 @@ class ActionWaitUntil(Action):
                     ActionClick(ActionPos.CONFIRM_REFILL_STAMINA).resolve()
                     # 3. close refill stamina window
                     ActionClick(ActionPos.CONFIRM_REFILL_STAMINA).resolve()
+                    # 4. click challenge again
+                    ActionClick(ActionPos.CHALLENGE_AGAIN).resolve()
                     break
                 elif is_template_appear_in_screenshot(ActionWaitUntilType.CONFIRM_BUTTON):
                     break
